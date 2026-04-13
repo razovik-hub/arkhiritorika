@@ -6,7 +6,7 @@
 
 **Главный оффер:** подготовка выступления мечты к АРХМОСКВА 2026 (27–30 мая, Гостиный Двор, тема «Идеал», куратор Тимур Башкаев, 27 000+ посетителей ежегодно).
 
-**Сайт:** https://razovik-hub.github.io/arkhiritorika/
+**Сайт:** https://archiritorica.space/
 **Репозиторий:** https://github.com/razovik-hub/arkhiritorika
 
 ---
