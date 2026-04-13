@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ахириторика — ораторское мастерство для архитекторов</title>
+    <meta name="description" content="Подготовьте выступление мечты к АРХМОСКВА 2026. Авторская система Сергея Васильева — 10 лет опыта, 5 лет работы с архитекторами.">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --text-primary: #f0ece4;
+            --text-secondary: #a8a197;
+            --accent: #c9a84c;
+            --accent-light: #e0c872;
+            --accent-dim: #8a7233;
+            --border: #2a2a2a;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .nav-burger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 640px;
+        }
+
+        .accent {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 64px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 960px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-date {
+            display: inline-block;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            display: block;
+        }
+
+        .hero-title-main {
+            color: var(--accent);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            max-width: 600px;
+        }
+
+        .hero-offer {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 540px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Challenge section */
+        .challenge {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .challenge-lead {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: var(--text-primary);
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 3rem;
+            max-width: 720px;
+        }
+
+        .challenge-questions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .challenge-q {
+            padding: 1.5rem;
+            border-left: 2px solid var(--accent-dim);
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .challenge-bottom {
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            max-width: 640px;
+        }
+
+        /* Method */
+        .method-steps {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 3.5rem 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: 200;
+            color: var(--accent-dim);
+            line-height: 1;
+            padding-top: 0.2rem;
+            text-align: center;
+        }
+
+        .step h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Confidence block */
+        .confidence {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .confidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .confidence-item {
+            padding: 2rem;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+        }
+
+        .confidence-item h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .confidence-item p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Trainer */
+        .trainer-content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
+
+        .trainer-photo {
+            width: 280px;
+            height: 360px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trainer-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .trainer-photo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(transparent, rgba(10,10,10,0.6));
+            pointer-events: none;
+        }
+
+        /* Partners / Support */
+        .partners {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .partners-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .partners-name {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .partners-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Clients / Bureaus */
+        .clients {
+            text-align: center;
+            padding: 3.5rem 2rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
+        }
+
+        .clients-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem 3rem;
+            margin-top: 2rem;
+            list-style: none;
+        }
+
+        .clients-list li {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+            transition: color 0.3s;
+        }
+
+        .clients-list li:hover {
+            color: var(--text-primary);
+        }
+
+        .trainer-bio {
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 640px;
+        }
+
+        .trainer-facts {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .trainer-facts li {
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .trainer-facts li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-dim);
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .price-card {
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.3s;
+        }
+
+        .price-card:hover {
+            border-color: var(--accent-dim);
+        }
+
+        .price-card-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .price-card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .price-card-details {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-card-price {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .price-card-price small {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .price-card .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        .price-card-free {
+            border-color: var(--accent-dim);
+        }
+
+        .pricing-note {
+            margin-top: 2.5rem;
+            padding: 1.5rem 2rem;
+            border-left: 2px solid var(--accent);
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta-section h2 {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section p {
+            margin: 0 auto 2.5rem;
+            text-align: center;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        /* Form */
+        .form-section {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .form-section h3 {
+            text-align: center;
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-dim);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.6;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-light);
+        }
+
+        /* Divider line */
+        .line-accent {
+            width: 48px;
+            height: 1px;
+            background: var(--accent-dim);
+            margin-bottom: 2rem;
+        }
+
+        /* ===== ANIMATIONS & VISUAL EFFECTS ===== */
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* Hero entrance animation */
+        .hero-content > * {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .hero-content > *:nth-child(1) { animation-delay: 0.2s; }
+        .hero-content > *:nth-child(2) { animation-delay: 0.4s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.6s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.8s; }
+        .hero-content > *:nth-child(5) { animation-delay: 1s; }
+
+        @keyframes heroFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animated line under hero title */
+        .hero-line {
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            margin: 0.8rem 0 1rem;
+            animation: lineExpand 1.2s 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes lineExpand {
+            to { width: 200px; }
+        }
+
+        /* Background grid pattern */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(201, 168, 76, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 168, 76, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+        }
+
+        /* Radial glow on hero */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            animation: glowPulse 6s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Card hover effects */
+        .price-card {
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        .price-card:hover {
+            border-color: var(--accent-dim);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(201, 168, 76, 0.08);
+        }
+
+        .confidence-item {
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        .confidence-item:hover {
+            border-color: var(--accent-dim);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.06);
+        }
+
+        /* Challenge questions hover */
+        .challenge-q {
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        .challenge-q:hover {
+            border-color: var(--accent);
+            background: rgba(201, 168, 76, 0.03);
+        }
+
+        /* Step hover */
+        .step {
+            transition: transform 0.3s;
+            padding: 1rem;
+            margin: -1rem;
+            border-radius: 4px;
+        }
+
+        .step:hover {
+            background: rgba(201, 168, 76, 0.02);
+        }
+
+        .step:hover .step-number {
+            color: var(--accent);
+            transition: color 0.3s;
+        }
+
+        /* Button glow effect */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 40%,
+                rgba(255, 255, 255, 0.15) 50%,
+                transparent 60%
+            );
+            transform: translateX(-100%);
+            transition: none;
+        }
+
+        .btn-primary:hover::after {
+            animation: btnShine 0.6s forwards;
+        }
+
+        @keyframes btnShine {
+            to { transform: translateX(100%); }
+        }
+
+        /* Gradient text on section labels */
+        .section-label {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Animated border on form focus */
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.2);
+        }
+
+        /* Decorative corner marks on confidence items */
+        .confidence-item {
+            position: relative;
+        }
+
+        .confidence-item::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid var(--accent-dim);
+            border-left: 2px solid var(--accent-dim);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .confidence-item::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid var(--accent-dim);
+            border-right: 2px solid var(--accent-dim);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .confidence-item:hover::before,
+        .confidence-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Pricing note animated border */
+        .pricing-note {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-note::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent), var(--accent-dim), transparent);
+        }
+
+        /* Nav link underline animation */
+        .nav-links a {
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Smooth section separator */
+        .section-glow {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-dim), transparent);
+            opacity: 0.4;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.97);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1.2rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-burger {
+                display: flex;
+            }
+
+            .step {
+                grid-template-columns: 2.5rem 1fr;
+                gap: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                text-align: center;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trainer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .trainer-photo {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-inner">
+        <a href="#hero" class="nav-logo">АХИРИТОРИКА</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#method">Метод</a></li>
+            <li><a href="#trainer">О тренере</a></li>
+            <li><a href="#pricing">Форматы</a></li>
+            <li><a href="#contact">Связаться</a></li>
+        </ul>
+        <button class="nav-burger" id="navBurger" aria-label="Меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+    <div class="hero-content">
+        <div class="hero-date">АРХМОСКВА — 27–30 мая 2026</div>
+        <h1>
+            <span class="hero-title-main">Ахириторика</span>
+            <span>специально для Архмосквы</span>
+        </h1>
+        <p class="hero-subtitle">Подготовьте выступление мечты к главному архитектурному событию года</p>
+        <div class="hero-line"></div>
+        <p class="hero-offer">Авторская система Сергея Васильева — от идеи до уверенного выхода на сцену</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">Записаться на бесплатную консультацию</a>
+            <a href="#method" class="btn btn-outline">Узнать о методе</a>
+        </div>
+    </div>
+</section>
+
+<!-- Challenge -->
+<section class="challenge" id="challenge">
+    <div class="container">
+        <div class="section-label reveal">Знакомо?</div>
+        <p class="challenge-lead reveal">
+            Каждый архитектор — потенциально уникальный харизматичный спикер.
+            Ваше <span class="accent">«не понимаю, о чём говорить»</span> может стать исходной точкой для потрясающего рассказа.
+        </p>
+        <div class="challenge-questions">
+            <div class="challenge-q reveal reveal-delay-1">
+                Какова «архитектура» моего выступления?  Как выстроить логику, чтобы зал слушал?
+            </div>
+            <div class="challenge-q reveal reveal-delay-2">
+                О чём говорить, если проект уже всё сказал за себя чертежами и рендерами?
+            </div>
+            <div class="challenge-q reveal reveal-delay-3">
+                Как справиться с волнением перед большим залом — когда один на один всё нормально, а на сцене ступор?
+            </div>
+            <div class="challenge-q reveal reveal-delay-4">
+                Как не читать со слайдов и не терять мысль на середине выступления?
+            </div>
+        </div>
+        <p class="challenge-bottom reveal">
+            Всё это решаемо. Задача — найти ваше уникальное место, раскрыть ваше видение, ценности и идеи. Не просто выступить — а запомниться.
+        </p>
+    </div>
+</section>
+
+<!-- Method -->
+<section id="method">
+    <div class="container">
+        <div class="section-label reveal">Авторский метод</div>
+        <h2 class="reveal">Как мы строим ваше выступление</h2>
+        <p class="reveal">Не заучивание текста, а поиск вашей идеи и её убедительная подача. Режиссёрский подход к каждому выступлению.</p>
+        <div class="method-steps">
+            <div class="step reveal reveal-delay-1">
+                <div class="step-number">01</div>
+                <div>
+                    <h3>Распаковка экспертизы</h3>
+                    <p>Находим в вашем опыте сильную идею и уникальный ракурс. Не «что вы делаете», а почему это важно и что это меняет.</p>
+                </div>
+            </div>
+            <div class="step reveal reveal-delay-2">
+                <div class="step-number">02</div>
+                <div>
+                    <h3>Целеполагание</h3>
+                    <p>Зачем вы выступаете? Кого хотите привлечь? Что хотите транслировать о своём бюро? Определяем сверхзадачу.</p>
+                </div>
+            </div>
+            <div class="step reveal reveal-delay-3">
+                <div class="step-number">03</div>
+                <div>
+                    <h3>Проектирование выступления</h3>
+                    <p>Тема, проблемы, методы, примеры — и главное: как ваше выступление изменит картину мира аудитории.</p>
+                </div>
+            </div>
+            <div class="step reveal reveal-delay-4">
+                <div class="step-number">04</div>
+                <div>
+                    <h3>От плана к деталям через репетиции</h3>
+                    <p>Запоминаем логику, а не текст. Прогоняем, детализируем, добавляем примеры, метафоры, юмор. Визуал — в конце, когда понятно, что нужно.</p>
+                </div>
+            </div>
+            <div class="step reveal">
+                <div class="step-number">05</div>
+                <div>
+                    <h3>Работа с уверенностью</h3>
+                    <p>С первой встречи: дыхание, присутствие на сцене, контакт с залом. Вы не будете бояться забыть слова — вы будете свободно рассуждать.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Confidence -->
+<section class="confidence" id="confidence">
+    <div class="container">
+        <div class="section-label reveal">Уверенность на сцене</div>
+        <h2 class="reveal">Волнение — это энергия. Мы научимся ею управлять</h2>
+        <p class="reveal">Работа с уверенностью начинается с первой встречи и идёт параллельно подготовке выступления.</p>
+        <div class="confidence-grid">
+            <div class="confidence-item reveal reveal-delay-1">
+                <h3>Управление состоянием</h3>
+                <p>Дыхательные техники и приёмы, которые работают прямо перед выходом на сцену.</p>
+            </div>
+            <div class="confidence-item">
+                <h3>Синдром самозванца</h3>
+                <p>Разбираемся, откуда он берётся, и учимся опираться на свою реальную экспертизу.</p>
+            </div>
+            <div class="confidence-item">
+                <h3>Сцена как инструмент</h3>
+                <p>Пространство, движение, жесты — осваиваем сцену как архитектор осваивает площадку.</p>
+            </div>
+            <div class="confidence-item">
+                <h3>Свободное рассуждение</h3>
+                <p>Когда вы знаете логику — вы не боитесь забыть слова. Вы говорите, а не декламируете.</p>
+            </div>
+            <div class="confidence-item">
+                <h3>Контакт с аудиторией</h3>
+                <p>Как видеть зал, чувствовать реакцию и вести за собой — а не выступать «в пустоту».</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trainer -->
+<section id="trainer">
+    <div class="container">
+        <div class="section-label reveal">О тренере</div>
+        <h2 class="reveal">Сергей Васильев</h2>
+        <div class="trainer-content">
+            <div class="trainer-photo reveal">
+                <img src="serge.jpg" alt="Сергей Васильев">
+            </div>
+            <div>
+                <p class="trainer-bio reveal">
+                    Театральный режиссёр и журналист, который нашёл своё призвание в работе с архитекторами.
+                    Помогаю превращать экспертизу в яркие, запоминающиеся выступления.
+                </p>
+                <ul class="trainer-facts reveal">
+                    <li>10 лет преподавания ораторского мастерства и деловой риторики</li>
+                    <li>5 лет специализации на архитекторах и дизайнерах</li>
+                    <li>Авторская система подготовки к публичным выступлениям</li>
+                    <li>Образование: театральная режиссура, журналистика</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners -->
+<div class="partners reveal">
+    <div class="container">
+        <div class="partners-label">При поддержке</div>
+        <div class="partners-name">Plan the Best</div>
+        <p class="partners-desc">Ведущее агентство бизнес-консультаций в архитектурном и проектном бизнесе</p>
+    </div>
+</div>
+
+<!-- Clients -->
+<div class="clients" id="clients">
+    <div class="container">
+        <div class="section-label reveal">Работал с архитекторами из</div>
+        <ul class="clients-list reveal">
+            <!-- Список бюро будет добавлен -->
+            <li>Название бюро</li>
+            <li>Название бюро</li>
+            <li>Название бюро</li>
+            <li>Название бюро</li>
+            <li>Название бюро</li>
+            <li>Название бюро</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Pricing -->
+<section class="challenge" id="pricing">
+    <div class="container">
+        <div class="section-label reveal">Форматы и стоимость</div>
+        <h2 class="reveal">Выберите свой формат</h2>
+        <p>Результат каждого формата — готовое, отрепетированное выступление. Вы платите за результат, а не за часы.</p>
+
+        <div class="pricing-grid">
+            <!-- Free webinar -->
+            <div class="price-card price-card-free reveal reveal-delay-1">
+                <div class="price-card-label">Знакомство</div>
+                <h3>Бесплатный вебинар</h3>
+                <div class="price-card-details">
+                    «Как сделать выступление мечты»<br><br>
+                    1.5 часа — знакомство с методом, разбор типичных ошибок, практические приёмы, которые можно применить сразу
+                </div>
+                <div class="price-card-price">Бесплатно</div>
+                <a href="#contact" class="btn btn-outline">Записаться на вебинар</a>
+            </div>
+
+            <!-- Group -->
+            <div class="price-card reveal reveal-delay-2">
+                <div class="price-card-label">Группа</div>
+                <h3>Выступление мечты за 2 недели</h3>
+                <div class="price-card-details">
+                    До 12 человек<br>
+                    5 встреч по 2.5 часа<br><br>
+                    Интенсивная работа в мини-группе. Каждый готовит своё реальное выступление с обратной связью тренера и группы
+                </div>
+                <div class="price-card-price">25 000 &#8381;</div>
+                <a href="#contact" class="btn btn-outline">Узнать о ближайшей группе</a>
+            </div>
+
+            <!-- Express -->
+            <div class="price-card reveal reveal-delay-3">
+                <div class="price-card-label">Индивидуально</div>
+                <h3>Экспресс</h3>
+                <div class="price-card-details">
+                    2 встречи по 1.5 часа<br>
+                    + бесплатная консультация<br><br>
+                    Компактный формат для тех, кто знает свою тему и хочет быстро отточить подачу и структуру
+                </div>
+                <div class="price-card-price">40 000 &#8381;</div>
+                <a href="#contact" class="btn btn-primary">Записаться на консультацию</a>
+            </div>
+
+            <!-- Deep -->
+            <div class="price-card reveal reveal-delay-4">
+                <div class="price-card-label">Индивидуально</div>
+                <h3>Углублённый курс</h3>
+                <div class="price-card-details">
+                    Программа и количество встреч — по согласованию<br>
+                    + бесплатная консультация<br><br>
+                    Полная проработка: от поиска идеи до генеральной репетиции. Для тех, кто хочет максимального результата
+                </div>
+                <div class="price-card-price">95 000 &#8381;</div>
+                <a href="#contact" class="btn btn-primary">Записаться на консультацию</a>
+            </div>
+        </div>
+
+        <div class="pricing-note">
+            Первая консультация — бесплатна. Это уже полноценная рабочая встреча: мы разберём вашу задачу, наметим план и проведём первую репетицию. После неё вы решите, какой формат подходит.
+        </div>
+    </div>
+</section>
+
+<!-- CTA + Contact -->
+<section class="cta-section" id="contact">
+    <div class="container">
+        <div class="section-label">Начнём?</div>
+        <h2>Запишитесь на бесплатную<br>консультацию-репетицию</h2>
+        <p>Это уже первый шаг к вашему выступлению. Без обязательств — просто попробуйте.</p>
+
+        <div class="cta-buttons">
+            <a href="https://t.me/" class="btn btn-primary" target="_blank" rel="noopener">Написать в Telegram</a>
+        </div>
+
+        <div class="form-section">
+            <h3>Или оставьте заявку</h3>
+            <form id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="contact" placeholder="Телефон или email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Расскажите коротко о вашей задаче (необязательно)"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary form-submit">Отправить заявку</button>
+            </form>
+            <p class="form-note">Отвечу в течение дня</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-inner">
+        <span class="footer-copy">Ахириторика &copy; 2026</span>
+        <a href="https://t.me/" class="footer-link" target="_blank" rel="noopener">Telegram</a>
+    </div>
+</footer>
+
+<script>
+    // Mobile menu
+    const burger = document.getElementById('navBurger');
+    const navLinks = document.getElementById('navLinks');
+
+    burger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+        });
+    });
+
+    // Scroll reveal with IntersectionObserver
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Form handling
+    function handleSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const contact = form.contact.value;
+        const message = form.message.value;
+
+        // For now, open mailto as fallback
+        const subject = encodeURIComponent('Заявка с сайта Ахириторика');
+        const body = encodeURIComponent(
+            `Имя: ${name}\nКонтакт: ${contact}\nСообщение: ${message || 'Не указано'}`
+        );
+
+        // Show success message
+        form.innerHTML = '<p style="color: var(--accent); font-size: 1.2rem; padding: 2rem 0;">Спасибо за заявку! Свяжусь с вами в ближайшее время.</p>';
+    }
+</script>
+
+</body>
+</html>
