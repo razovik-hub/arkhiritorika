@@ -445,30 +445,67 @@
 
         /* Partners / Support */
         .partners {
-            text-align: center;
-            padding: 3rem 2rem;
+            padding: 5rem 2rem;
             border-top: 1px solid var(--border);
         }
 
-        .partners-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
+        .partners h2 {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .partners-name {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--text-primary);
-            letter-spacing: 0.05em;
+        .partner-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            align-items: start;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .partners-desc {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-top: 0.5rem;
+        .partner-logo {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 0.5rem;
+        }
+
+        .partner-logo img {
+            width: 180px;
+            height: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.85;
+            transition: opacity 0.3s;
+        }
+
+        .partner-logo img:hover {
+            opacity: 1;
+        }
+
+        .partner-info {
+            text-align: left;
+        }
+
+        .partner-info .trainer-bio {
+            max-width: none;
+        }
+
+        .partner-info .trainer-facts {
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .partner-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            .partner-logo {
+                justify-content: center;
+            }
+            .partner-info {
+                text-align: left;
+            }
         }
 
         /* Clients / Bureaus */
@@ -732,6 +769,16 @@
         .price-card-price small {
             font-size: 0.9rem;
             color: var(--text-secondary);
+        }
+
+        .price-old {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            text-decoration-color: var(--accent-dim);
+            opacity: 0.6;
+            margin-right: 0.5rem;
+            font-weight: 300;
         }
 
         .price-card .btn {
@@ -1395,19 +1442,26 @@
 <section class="partners" id="partners">
     <div class="container">
         <h2 class="reveal">В партнёрстве с <a href="https://planthebest.info" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--accent)'">Plan the Best</a></h2>
-        <div class="trainer-content" style="grid-template-columns: 1fr;">
-            <p class="trainer-bio reveal">
-                Консалтинговое агентство #1 для креативных индустрий. С 2010 года помогают архитектурным бюро, дизайн-студиям и строительным компаниям выстраивать управление, продажи и коммуникации. Более 117 реализованных проектов.
-            </p>
-            <ul class="trainer-facts reveal">
-                <li>Бизнес-стратегии и стратегические сессии для бюро</li>
-                <li>PR и коммуникации — от личного бренда до PR проектов</li>
-                <li>Развитие лидеров и команд — коучинг, трекинг, личный бренд</li>
-                <li>Маркетинг, HR-бренд и анализ конкурентов</li>
-            </ul>
-            <p class="reveal" style="margin-top: 1rem;">
-                <a href="https://planthebest.info" target="_blank" rel="noopener" class="btn btn-outline">planthebest.info</a>
-            </p>
+        <div class="partner-card">
+            <div class="partner-logo reveal">
+                <a href="https://planthebest.info" target="_blank" rel="noopener">
+                    <img src="ptblogo.svg" alt="Plan the Best">
+                </a>
+            </div>
+            <div class="partner-info">
+                <p class="trainer-bio reveal">
+                    Консалтинговое агентство #1 для креативных индустрий. С 2010 года помогают архитектурным бюро, дизайн-студиям и строительным компаниям выстраивать управление, продажи и коммуникации. Более 117 реализованных проектов.
+                </p>
+                <ul class="trainer-facts reveal">
+                    <li>Бизнес-стратегии и стратегические сессии для бюро</li>
+                    <li>PR и коммуникации — от личного бренда до PR проектов</li>
+                    <li>Развитие лидеров и команд — коучинг, трекинг, личный бренд</li>
+                    <li>Маркетинг, HR-бренд и анализ конкурентов</li>
+                </ul>
+                <p class="reveal" style="margin-top: 1.5rem;">
+                    <a href="https://planthebest.info" target="_blank" rel="noopener" class="btn btn-outline">planthebest.info</a>
+                </p>
+            </div>
         </div>
     </div>
 </section>
@@ -1475,7 +1529,7 @@
                     + бесплатная консультация<br><br>
                     Компактный формат для тех, кто знает свою тему и хочет быстро отточить подачу и структуру
                 </div>
-                <div class="price-card-price">40 000 &#8381;</div>
+                <div class="price-card-price"><span class="price-old">50 000 ₽</span> 40 000 &#8381;</div>
                 <a href="#contact" class="btn btn-primary">Записаться на консультацию</a>
             </div>
 
@@ -1488,7 +1542,7 @@
                     + бесплатная консультация<br><br>
                     Полная проработка: от поиска идеи до генеральной репетиции. Для тех, кто хочет максимального результата
                 </div>
-                <div class="price-card-price">95 000 &#8381;</div>
+                <div class="price-card-price"><span class="price-old">110 000 ₽</span> 95 000 &#8381;</div>
                 <a href="#contact" class="btn btn-primary">Записаться на консультацию</a>
             </div>
 
