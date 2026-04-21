@@ -260,13 +260,13 @@
 
         .btn-outline {
             background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
+            color: var(--accent);
+            border: 1px solid var(--accent);
         }
 
         .btn-outline:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+            background: var(--accent);
+            color: var(--bg-primary);
         }
 
         .hero-buttons {
@@ -343,6 +343,16 @@
                 min-height: 520px;
                 gap: 0.9rem 1.4rem;
             }
+        }
+
+        .challenge-bridge {
+            text-align: center;
+            font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+            font-weight: 300;
+            color: var(--text-primary);
+            line-height: 1.5;
+            max-width: 720px;
+            margin: 1.5rem auto 3rem;
         }
 
         .challenge-main {
@@ -1059,6 +1069,25 @@
             margin-top: 1rem;
         }
 
+        .form-consent {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        .form-consent a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent-dim);
+        }
+
+        .form-consent a:hover {
+            border-bottom-color: var(--accent);
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--border);
@@ -1504,12 +1533,16 @@
             <span class="pain size-s">Как уложиться в 7 минут?</span>
         </div>
 
+        <p class="challenge-bridge reveal">
+            Со всем этим <span class="accent">поможем справиться</span> — спокойно, по шагам, без давления.
+        </p>
+
         <div class="challenge-main reveal">
             <p>Цель — <span class="accent">сделать так, чтобы после выступления к вам подошли, запомнили и захотели работать именно с вами.</span></p>
         </div>
 
         <p class="challenge-bottom reveal">
-            Всё это решаемо. Задача — найти ваше уникальное место, раскрыть ваше видение, ценности и идеи. Не просто выступить — а запомниться.
+            Задача — найти ваше уникальное место, раскрыть ваше видение, ценности и идеи. Не просто выступить — а запомниться.
         </p>
     </div>
 </section>
@@ -1913,6 +1946,10 @@
 
                 <button type="submit" class="btn btn-primary form-submit">Отправить заявку</button>
                 <div id="formStatus" class="form-status"></div>
+                <p class="form-consent">
+                    Нажимая «Отправить заявку», вы соглашаетесь с
+                    <a href="privacy.html" target="_blank" rel="noopener">политикой обработки персональных данных</a>.
+                </p>
             </form>
             <p class="form-note">Отвечу в течение дня</p>
         </div>
@@ -1923,6 +1960,7 @@
 <footer>
     <div class="footer-inner">
         <span class="footer-copy">Архириторика &copy; 2026</span>
+        <a href="privacy.html" class="footer-link">Политика обработки данных</a>
         <a href="https://t.me/vasilyevsv" class="footer-link" target="_blank" rel="noopener">Telegram</a>
     </div>
 </footer>
