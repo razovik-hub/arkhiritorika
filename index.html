@@ -1843,6 +1843,8 @@
         <div class="form-section">
             <h3>Или оставьте заявку</h3>
             <form id="contactForm" onsubmit="handleSubmit(event)">
+                <!-- Honeypot для ботов; не показывается людям -->
+                <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                 <div class="form-row">
                     <div class="form-group">
                         <input type="text" name="firstName" placeholder="Имя" required>
@@ -2031,9 +2033,10 @@
         });
     });
 
-    // Form submission — POST to Google Apps Script Web App
-    // After deploying the script, paste the /exec URL here:
-    const FORM_ENDPOINT = 'https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec';
+    // Form submission — FormSubmit.co AJAX endpoint
+    // Письма приходят на vasilyev.training@gmail.com.
+    // Первая заявка требует подтверждения по ссылке в письме от FormSubmit.
+    const FORM_ENDPOINT = 'https://formsubmit.co/ajax/vasilyev.training@gmail.com';
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -2041,19 +2044,26 @@
         const status = document.getElementById('formStatus');
         const submitBtn = form.querySelector('.form-submit');
 
-        const data = {
-            firstName: form.firstName.value.trim(),
-            lastName: form.lastName.value.trim(),
-            company: form.company.value.trim(),
-            position: form.position.value.trim(),
-            program: (form.program.value || '').trim(),
-            request: form.request.value.trim(),
-            source: form.source.value.trim(),
-            phone: form.phone.value.trim(),
-            email: form.email.value.trim(),
-            channel: (form.channel.value || '').trim(),
-            page: location.href,
-            ts: new Date().toISOString()
+        // Honeypot check — если заполнено, это бот
+        if (form._honey && form._honey.value) return;
+
+        const payload = {
+            _subject: `Заявка с сайта — ${form.firstName.value.trim()} ${form.lastName.value.trim()}`.trim(),
+            _template: 'table',
+            _captcha: 'false',
+            _replyto: form.email.value.trim(),
+
+            'Имя': form.firstName.value.trim(),
+            'Фамилия': form.lastName.value.trim(),
+            'Компания': form.company.value.trim() || '—',
+            'Должность': form.position.value.trim() || '—',
+            'Программа': (form.program.value || '—').trim(),
+            'Запрос': form.request.value.trim() || '—',
+            'Источник': form.source.value.trim() || '—',
+            'Телефон': form.phone.value.trim(),
+            'Почта': form.email.value.trim(),
+            'Канал связи': (form.channel.value || '—').trim(),
+            'Страница': location.href
         };
 
         submitBtn.disabled = true;
@@ -2061,16 +2071,23 @@
         status.classList.remove('show', 'error');
 
         try {
-            // text/plain avoids CORS preflight; Apps Script reads e.postData.contents
-            await fetch(FORM_ENDPOINT, {
+            const res = await fetch(FORM_ENDPOINT, {
                 method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(data)
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
             });
 
+            const json = await res.json().catch(() => ({}));
+
+            if (!res.ok || json.success === 'false' || json.success === false) {
+                throw new Error(json.message || 'submit failed');
+            }
+
             form.reset();
-            // re-sync default Telegram chip
+            // Re-sync default Telegram chip after reset
             document.querySelectorAll('.form-radio-group label').forEach(l => l.classList.remove('checked'));
             const tgLabel = document.querySelector('label[for="ch-tg"]');
             if (tgLabel) tgLabel.classList.add('checked');
@@ -2079,7 +2096,7 @@
             status.classList.add('show');
             submitBtn.textContent = 'Отправлено';
         } catch (err) {
-            status.textContent = 'Не получилось отправить. Напишите, пожалуйста, в Telegram: @vasilyevsv';
+            status.textContent = 'Не получилось отправить. Напишите в Telegram: @vasilyevsv';
             status.classList.add('show', 'error');
             submitBtn.disabled = false;
             submitBtn.textContent = 'Отправить заявку';
