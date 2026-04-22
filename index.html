@@ -2068,10 +2068,11 @@
         });
     });
 
-    // Form submission — FormSubmit.co AJAX endpoint
-    // Письма приходят на vasilyev.training@gmail.com.
-    // Первая заявка требует подтверждения по ссылке в письме от FormSubmit.
-    const FORM_ENDPOINT = 'https://formsubmit.co/ajax/vasilyev.training@gmail.com';
+    // Form submission — Google Apps Script Web App
+    // Скрипт пишет строку в Google Sheet и шлёт письмо на vasilyev.training@gmail.com.
+    // Apps Script не отдаёт CORS-заголовки на чтение ответа, поэтому шлём
+    // в режиме no-cors и считаем доставку успешной, если fetch не упал.
+    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzUxbLlopqagk3c1W7ong3Uum7GOliE1wu65JyDtgZBvckzsMlDLNZ9or1VFbEX1EB04Q/exec';
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -2083,22 +2084,17 @@
         if (form._honey && form._honey.value) return;
 
         const payload = {
-            _subject: `Заявка с сайта — ${form.firstName.value.trim()} ${form.lastName.value.trim()}`.trim(),
-            _template: 'table',
-            _captcha: 'false',
-            _replyto: form.email.value.trim(),
-
-            'Имя': form.firstName.value.trim(),
-            'Фамилия': form.lastName.value.trim(),
-            'Компания': form.company.value.trim() || '—',
-            'Должность': form.position.value.trim() || '—',
-            'Программа': (form.program.value || '—').trim(),
-            'Запрос': form.request.value.trim() || '—',
-            'Источник': form.source.value.trim() || '—',
-            'Телефон': form.phone.value.trim(),
-            'Почта': form.email.value.trim(),
-            'Канал связи': (form.channel.value || '—').trim(),
-            'Страница': location.href
+            firstName: form.firstName.value.trim(),
+            lastName:  form.lastName.value.trim(),
+            company:   form.company.value.trim(),
+            position:  form.position.value.trim(),
+            program:   (form.program.value || '').trim(),
+            request:   form.request.value.trim(),
+            source:    form.source.value.trim(),
+            phone:     form.phone.value.trim(),
+            email:     form.email.value.trim(),
+            channel:   (form.channel.value || '').trim(),
+            page:      location.href
         };
 
         submitBtn.disabled = true;
@@ -2106,20 +2102,13 @@
         status.classList.remove('show', 'error');
 
         try {
-            const res = await fetch(FORM_ENDPOINT, {
+            // text/plain → не вызывает CORS preflight; Apps Script читает body как JSON-строку
+            await fetch(FORM_ENDPOINT, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify(payload)
             });
-
-            const json = await res.json().catch(() => ({}));
-
-            if (!res.ok || json.success === 'false' || json.success === false) {
-                throw new Error(json.message || 'submit failed');
-            }
 
             form.reset();
             // Re-sync default Telegram chip after reset
